@@ -1,0 +1,29 @@
+name: Run Python Script
+
+on:
+  schedule:
+    # This cron syntax schedules the workflow to run every minute
+    - cron: '0 0 * * 0'  # Runs every minute
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'  # Specify the Python version you need
+      
+      - name: Install dependencies
+        run: |  
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # If you have a requirements file
+
+      - name: Run Python script
+        env:
+          PERSNOL_TOKEN: ${{secrets.PERSNOL_TOKEN }}  # Use your secret here
+        run: python script.py  # Adjust the path if needed
