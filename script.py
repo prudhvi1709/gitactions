@@ -11,6 +11,8 @@ import urllib
 import os.path
 import logging
 import pandas as pd
+import urllib.request
+import os
 
 # Max pages per location
 MAX_PAGES = 20
@@ -24,7 +26,7 @@ def users(location, pages, token=None):
         logging.info('location %s: %d/%d', location, page, pages)
         try:
             link = url + '?start_page=%d&access_token=%s' % (page, token)
-            result = json.load(urllib.urlopen(link))
+            result = json.load(urllib.request.urlopen(link))
         except IOError as e:
             logging.info('location %s: %d/%d failed: %s', location, page, pages, e)
             result = {}
@@ -62,7 +64,7 @@ def followers(user, count, token=None):
     for page in range(pages):
         logging.info('user %s: %d/%d', user, page + 1, pages)
         try:
-            result = json.load(urllib.urlopen(url + '&page=%d' % page))
+            result = json.load(urllib.request.urlopen(url + '&page=%d' % page))
         except IOError:
             result = []
         if len(result):
@@ -106,8 +108,9 @@ def fill_followers(userfile, followerfile, token=None):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    TOKEN = input('Github token '
-                  '(https://github.com/settings/tokens/new): ')
+    TOKEN = os.getenv('PERSNOL_TOKEN')  # Get the token from environment variable
+    if not TOKEN:
+        raise ValueError("GitHub token is required.")
     if len(sys.argv) > 1:
         search_locations(sys.argv[1:], 'users.csv', token=TOKEN)
     if os.path.exists('users.csv'):
