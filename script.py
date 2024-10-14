@@ -106,8 +106,8 @@ def fill_followers(userfile, followerfile, token=None):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    TOKEN = raw_input('Github token '
-                      '(https://github.com/settings/tokens/new): ')
+    TOKEN = input('Github token '
+                  '(https://github.com/settings/tokens/new): ')
     if len(sys.argv) > 1:
         search_locations(sys.argv[1:], 'users.csv', token=TOKEN)
     if os.path.exists('users.csv'):
