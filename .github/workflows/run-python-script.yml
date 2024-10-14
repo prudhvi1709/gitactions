@@ -3,7 +3,7 @@ name: Run Python Script
 on:
   schedule:
     # This cron syntax schedules the workflow to run every minute
-    - cron: '* * * * *'  # Runs every minute
+    - cron: '0 0 * * 0'  # Runs every minute
 
 jobs:
   run-script:
