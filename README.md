@@ -1,0 +1,1 @@
+[![Run Python Script](https://github.com/prudhvi1709/gitactions/actions/workflows/run-python-script.yml/badge.svg?branch=main&event=push)](https://github.com/prudhvi1709/gitactions/actions/workflows/run-python-script.yml)
