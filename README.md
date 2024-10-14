@@ -1,8 +1,5 @@
 [![Run Python Script](https://github.com/prudhvi1709/gitactions/actions/workflows/run-python-script.yml/badge.svg?branch=main&event=push)](https://github.com/prudhvi1709/gitactions/actions/workflows/run-python-script.yml)
 
-# Python Script Runner with GitHub Actions
-
-This repository contains a GitHub Actions workflow that automatically runs a Python script on a scheduled basis. Below are the steps to set up and configure the workflow.
 
 ## Workflow Overview
 
